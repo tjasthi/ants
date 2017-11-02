@@ -1,0 +1,14 @@
+\documentclass{article}
+\begin{document}
+    \noindent
+    We calculate the number of packets needed for each method to find the minimum.
+        \begin{itemize}
+            \item Email: $k$ packets are lost and we need $n$ packets. When $k$ packets are lost, we need to send $n + k$ extra packets to end up with $n$ packets. In this case, $k = 0.4 * n$. Thus, we should send $n + 0.4 * n = 1.4 * n$ packets.
+            \item IMessage: $k$ packets are corrupted and we need $n$ packets. When $k$ packets are corrupted, we need to send $n + 2k$ extra packets to end up with $n$ packets. In this case, $k = 0.2 * n$. Thus, we should send $n + 2 * 0.2 * n = 1.4 * n$ packets.
+            \item GroupMe: To account for 2 events, let us define $k_1$ as the number of packets that are lost and $k_2$ as the number of packets that are corrupted.\\
+            Let us first find $k_2$ using the fact that n packets must be received. When $k_2$ packets are corrupted, we need to send $n + 2k_2$ extra packets to end up with $n$ packets. To account for this corruption, we should send $n + 2 * 0.05 * n = 1.1 * n$ packets before the corruption. \\
+            Knowing we need $1.1 * n$ packets before the corruption, we can find $k_1$. When $k_1$ packets are lost, we need to send $n + k_1$ extra packets to end up with $n$ packets. To account for the loss, we should send $(1.1 * n) + 0.25 * (1.1 * n) = 1.375 * n$ packets.
+    	\end{itemize}
+    From this this, we must send at least $1.375 * n$ packets to ensure James can receive the message. This is only possible if Sinho sends his message via groupme. \\
+    If the message is $100$ packets, Sinho must send $100 * 1.375 \approx 138$ packets in total.
+\end{document}
